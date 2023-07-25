@@ -37,12 +37,12 @@ public class GraphTraversal {
         }
     }
 
-    static void dfs(ArrayList<ArrayList<Integer>> graph, int vertex, boolean[] visited){
+    static void dfs(ArrayList<ArrayList<Integer>> graph, boolean[] visited, int vertex){
         visited[vertex] = true;
         System.out.print(vertex + " ");
-        for (int neighbor: graph.get(vertex)){
-            if (!visited[neighbor]){
-                dfs(graph, neighbor, visited);
+        for (int n: graph.get(vertex)){
+            if (!visited[n]){
+                dfs(graph, visited, n);
             }
         }
     }
@@ -74,6 +74,6 @@ public class GraphTraversal {
         System.out.println();
         System.out.println("DFS");
         boolean[] visited = new boolean[7];
-        dfs(graph, 0, visited);
+        dfs(graph, visited, 0);
     }
 }
