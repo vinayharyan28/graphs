@@ -14,18 +14,22 @@ public class FindAllPath {
         }
     }
 
-    static void printAllPaths(ArrayList<ArrayList<Integer>> graph, boolean[] visited, String path, int currentNode, int target){
-        if(currentNode == target){
+    static void allPathSourceToDestination(
+            ArrayList<ArrayList<Integer>> graph, int source, int destination, boolean[] visited, String path
+    ){
+        if (source == destination){
             System.out.println(path);
             return;
         }
-        for (int n: graph.get(currentNode)){
-            if(!visited[n]){
-                visited[currentNode] = true;
-                printAllPaths(graph, visited, path+n,n,target);
-                visited[currentNode]=false;
+
+        for (int n: graph.get(source)){
+            if (!visited[n]){
+                visited[source] = true;
+                allPathSourceToDestination(graph, n, destination, visited, path+n);
+                visited[source] = false;
             }
         }
+
     }
 
     public static void main(String[] args) {
@@ -43,8 +47,8 @@ public class FindAllPath {
 
         System.out.println(graph);
         boolean[] visited = new boolean[vertex];
-        int source=0, target=5;
+        int source=0, destination=5;
         //v^V
-        printAllPaths(graph, visited, ""+0, source, target);
+        allPathSourceToDestination(graph, source, destination, visited, ""+source);
     }
 }
