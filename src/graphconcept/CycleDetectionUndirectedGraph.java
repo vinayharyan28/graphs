@@ -14,18 +14,15 @@ public class CycleDetectionUndirectedGraph {
         }
     }
 
-    static boolean cycleDetectionUndirectedGraph(ArrayList<ArrayList<Integer>> graph, boolean[] visited, int current, int parent){
+    static boolean isCycle(ArrayList<ArrayList<Integer>> graph, boolean[] visited, int current, int parent){
         visited[current] = true;
         for (int neighbour: graph.get(current)){
-            if (visited[neighbour] && parent != neighbour){
+            if (visited[neighbour] && neighbour != parent) {
                 return true;
-            }else if (!visited[neighbour]){
-                if (cycleDetectionUndirectedGraph(graph, visited, neighbour, current)){
-                    return true;
-                }
+            } else if (!visited[neighbour]) {
+                return isCycle(graph, visited, neighbour, current);
             }
-        }
-        return false;
+        }return false;
     }
 
     public static void main(String[] args){
@@ -53,7 +50,7 @@ public class CycleDetectionUndirectedGraph {
 
         System.out.println(graph);
         boolean[] visited = new boolean[vertex+1];
-        System.out.println(cycleDetectionUndirectedGraph(graph, visited, 0, -1));
+        System.out.println(isCycle(graph, visited, 0, -1));
 
     }
 }
