@@ -5,11 +5,11 @@ import java.util.PriorityQueue;
 
 import java.util.*;
 
-class dijkstraAlgorithmDirectedGraph {
+class DijkstraAlgorithmDirectedGraphOLD {
     private int V; // Number of vertices
     private List<Edge>[] adjacencyList;
 
-    public dijkstraAlgorithmDirectedGraph(int V) {
+    public DijkstraAlgorithmDirectedGraphOLD(int V) {
         this.V = V;
         adjacencyList = new ArrayList[V];
         for (int i = 0; i < V; i++) {
@@ -18,7 +18,7 @@ class dijkstraAlgorithmDirectedGraph {
     }
 
     // Class to represent an edge with its weight
-    private class Edge {
+    private static class Edge {
         int dest;
         int weight;
 
@@ -61,12 +61,10 @@ class dijkstraAlgorithmDirectedGraph {
 
         return distances;
     }
-}
 
-class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args){
         int V = 5; // Number of vertices in the graph
-        dijkstraAlgorithmDirectedGraph graph = new dijkstraAlgorithmDirectedGraph(V);
+        DijkstraAlgorithmDirectedGraphOLD graph = new DijkstraAlgorithmDirectedGraphOLD(V);
 
         graph.addEdge(0, 1, 2);
         graph.addEdge(0, 3, 1);
