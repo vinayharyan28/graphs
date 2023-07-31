@@ -65,7 +65,7 @@ public class BellmanFordAlgorithmTest {
         edges.add(new Edge(2, 1, 2));
         edges.add(new Edge(2, 3, -3));
         edges.add(new Edge(3, 4, -1));
-//        edges.add(new Edge(4, 2, -4));
+        edges.add(new Edge(4, 2, -4));
 
         bellmanFord(edges, vertices, source, distance);
 
