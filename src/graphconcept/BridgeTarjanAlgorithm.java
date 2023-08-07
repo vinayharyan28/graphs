@@ -2,7 +2,7 @@ package graphconcept;
 import java.util.ArrayList;
 
 
-public class BridgeAndArticulationPoint {
+public class BridgeTarjanAlgorithm {
     static void createGraph(ArrayList<ArrayList<Integer>> graph, int vertices){
         for (int i=0; i<vertices; i++){
             graph.add(new ArrayList<>());
@@ -27,6 +27,7 @@ public class BridgeAndArticulationPoint {
                 lowDiscoveryTime[current] = Math.min(lowDiscoveryTime[current], discoveryTime[neighbour]);
             }else{
                 dfs(graph, neighbour, current, visited, discoveryTime, lowDiscoveryTime, time);
+                lowDiscoveryTime[current] = Math.min(lowDiscoveryTime[current], lowDiscoveryTime[neighbour]);
                 if(discoveryTime[current] < lowDiscoveryTime[neighbour]){
                     System.out.println("BRIDGE: " + current + "---" + neighbour);
                 }
