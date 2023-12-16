@@ -1,4 +1,4 @@
-package graphconcept;
+package graphconcept.graphtraversal;
 import java.util.*;
 
 
@@ -25,7 +25,7 @@ public class GraphTraversal {
         LinkedList<Integer> queue = new LinkedList<>();
         queue.offer(source);
 
-        while (queue.size()!=0){
+        while (!queue.isEmpty()){
             int element = queue.poll();
             System.out.print(element + " ");
             for (int n: graph.get(element)){

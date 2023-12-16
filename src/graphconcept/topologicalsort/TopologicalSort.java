@@ -1,4 +1,4 @@
-package graphconcept;
+package graphconcept.topologicalsort;
 
 import java.util.ArrayList;
 import java.util.Stack;

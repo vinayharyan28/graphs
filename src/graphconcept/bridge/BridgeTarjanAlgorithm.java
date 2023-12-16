@@ -1,8 +1,8 @@
-package graphconcept;
-
+package graphconcept.bridge;
 import java.util.ArrayList;
 
-public class ArticulationPointTarjanAlgorithm {
+
+public class BridgeTarjanAlgorithm {
     static void createGraph(ArrayList<ArrayList<Integer>> graph, int vertices){
         for (int i=0; i<vertices; i++){
             graph.add(new ArrayList<>());
@@ -15,51 +15,39 @@ public class ArticulationPointTarjanAlgorithm {
     }
 
     static void dfs(ArrayList<ArrayList<Integer>> graph, int current, int parent, boolean[] visited,
-                    int[] discoveryTime, int[] lowDiscoveryTime, int time, boolean[] isArticulation){
+                    int[] discoveryTime, int[] lowDiscoveryTime, int time
+            ){
         visited[current] = true;
         discoveryTime[current] = lowDiscoveryTime[current] = ++time;
-        int child = 0;
-        for (int neighbour: graph.get(current)){
+        for(int neighbour: graph.get(current)){
             if (neighbour == parent){
                 continue;
             }
             if (visited[neighbour]){
                 lowDiscoveryTime[current] = Math.min(lowDiscoveryTime[current], discoveryTime[neighbour]);
             }else{
-                dfs(graph, neighbour, current, visited, discoveryTime, lowDiscoveryTime, time, isArticulation);
+                dfs(graph, neighbour, current, visited, discoveryTime, lowDiscoveryTime, time);
                 lowDiscoveryTime[current] = Math.min(lowDiscoveryTime[current], lowDiscoveryTime[neighbour]);
-                if (discoveryTime[current] <= lowDiscoveryTime[neighbour] & parent != -1){
-                    isArticulation[current] = true;
+                if(discoveryTime[current] < lowDiscoveryTime[neighbour]){
+                    System.out.println("BRIDGE: " + current + "---" + neighbour);
                 }
-                child++;
-            }
-            if (parent == -1 && child > 1){
-                isArticulation[current] = true;
             }
         }
     }
 
-    static void findArticulationPoint(ArrayList<ArrayList<Integer>> graph, int vertices){
+    static void findBridge(ArrayList<ArrayList<Integer>> graph, int vertices){
         int[] discoveryTime = new int[vertices];
         int[] lowDiscoveryTime = new int[vertices];
         boolean[] visited = new boolean[vertices];
-        boolean[] isArticulation = new boolean[vertices];
         int time = 0;
         for (int i=0; i<vertices; i++){
-            if (!visited[i]){
-                dfs(graph, i, -1, visited, discoveryTime, lowDiscoveryTime, time, isArticulation);
-            }
-        }
-
-        System.out.println("Articulation point: ");
-        for (int i=0; i<vertices; i++){
-            if(isArticulation[i]){
-                System.out.print(i + " ");
+            if(!visited[i]){
+                dfs(graph, i, -1, visited, discoveryTime, lowDiscoveryTime, time);
             }
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
         ArrayList<ArrayList<Integer>> graph = new ArrayList<>();
         int vertices = 5;
         createGraph(graph, vertices);
@@ -68,6 +56,7 @@ public class ArticulationPointTarjanAlgorithm {
         addEdge(2, 1, graph);
         addEdge(0, 3, graph);
         addEdge(3, 4, graph);
-        findArticulationPoint(graph, vertices);
+        findBridge(graph, vertices);
     }
+
 }

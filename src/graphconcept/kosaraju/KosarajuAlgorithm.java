@@ -1,4 +1,4 @@
-package graphconcept;
+package graphconcept.kosaraju;
 
 import java.util.ArrayList;
 import java.util.Stack;

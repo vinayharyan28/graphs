@@ -1,4 +1,4 @@
-package graphconcept;
+package graphconcept.graphtraversal;
 import java.util.ArrayList;
 import java.util.Arrays;
 

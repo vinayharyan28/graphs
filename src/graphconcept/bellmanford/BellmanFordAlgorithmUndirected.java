@@ -1,4 +1,4 @@
-package graphconcept;
+package graphconcept.bellmanford;
 
 import java.util.ArrayList;
 import java.util.Arrays;
