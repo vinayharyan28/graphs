@@ -1,4 +1,4 @@
-package graphconcept.prims;
+package graphconcept.minimumspanningtree;
 
 import java.util.ArrayList;
 import java.util.HashSet;
